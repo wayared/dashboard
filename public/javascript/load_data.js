@@ -23,6 +23,10 @@ let cargarPrecipitacion = () => {
     }
   }
   //Con los valores filtrados, obtenga los valores máximo, promedio y mínimo
+  let max = Math.max(...datos);
+  let min = Math.min(...datos);
+  let sum = datos.reduce((a, b) => a + b, 0);
+  let prom = sum / datos.length || 0;
   //Obtenga la referencia a los elementos HTML con id precipitacionMinValue, precipitacionPromValue y precipitacionMaxValue
   //Actualice los elementos HTML con los valores correspondientes
 };
