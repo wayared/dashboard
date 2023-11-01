@@ -13,13 +13,13 @@ let cargarPrecipitacion = () => {
 
   //Defina un arreglo temporal vacío
   let datos = [];
-  /Itere en el arreglo tiempoArr para filtrar los valores de precipitacionArr que sean igual con la fecha actual
+  //Itere en el arreglo tiempoArr para filtrar los valores de precipitacionArr que sean igual con la fecha actual
   for (let index = 0; index < tiempoArr.length; index++) {
     const tiempo = tiempoArr[index];
-    const precipitacion = precipitacionArr[index]
+    const precipitacion = precipitacionArr[index];
 
-    if(tiempo.includes(actual)) {
-      datos.push(precipitacion)
+    if (tiempo.includes(actual)) {
+      datos.push(precipitacion);
     }
   }
   //Con los valores filtrados, obtenga los valores máximo, promedio y mínimo
