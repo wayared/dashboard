@@ -46,5 +46,10 @@ cargarPrecipitacion();
 
 let cargarFechaActual = () => {
   //Obtenga la referencia al elemento h6
+  let coleccionHTML = document.getElementsByTagName("h6");
+
+  let tituloH6 = coleccionHTML[0];
+
   //Actualice la referencia al elemento h6 con el valor de la función fechaActual()
+  tituloH6.textContent = fechaActual();
 };
