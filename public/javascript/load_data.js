@@ -8,8 +8,11 @@ import {
 let fechaActual = () => new Date().toISOString().slice(0, 10);
 
 let cargarPrecipitacion = () => {
-  //Obtenga la función fechaActual
+  //Obtenga la fecha actual
+  let actual = fechaActual();
+
   //Defina un arreglo temporal vacío
+  let datos = [];
   //Itere en el arreglo tiempoArr para filtrar los valores de precipitacionArr que sean igual con la fecha actual
   //Con los valores filtrados, obtenga los valores máximo, promedio y mínimo
   //Obtenga la referencia a los elementos HTML con id precipitacionMinValue, precipitacionPromValue y precipitacionMaxValue
