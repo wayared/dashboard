@@ -35,6 +35,11 @@ let cargarPrecipitacion = () => {
   );
   let precipitacionMaxValue = document.getElementById("precipitacionMaxValue");
   //Actualice los elementos HTML con los valores correspondientes
+  precipitacionMinValue.textContent = `Min ${min} [mm]`;
+  precipitacionPromValue.textContent = `Prom ${
+    Math.round(prom * 100) / 100
+  } [mm]`;
+  precipitacionMaxValue.textContent = `Max ${max} [mm]`;
 };
 
 cargarPrecipitacion();
