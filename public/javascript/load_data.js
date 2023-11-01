@@ -43,3 +43,8 @@ let cargarPrecipitacion = () => {
 };
 
 cargarPrecipitacion();
+
+let cargarFechaActual = () => {
+  //Obtenga la referencia al elemento h6
+  //Actualice la referencia al elemento h6 con el valor de la función fechaActual()
+};
