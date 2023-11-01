@@ -28,6 +28,12 @@ let cargarPrecipitacion = () => {
   let sum = datos.reduce((a, b) => a + b, 0);
   let prom = sum / datos.length || 0;
   //Obtenga la referencia a los elementos HTML con id precipitacionMinValue, precipitacionPromValue y precipitacionMaxValue
+
+  let precipitacionMinValue = document.getElementById("precipitacionMinValue");
+  let precipitacionPromValue = document.getElementById(
+    "precipitacionPromValue"
+  );
+  let precipitacionMaxValue = document.getElementById("precipitacionMaxValue");
   //Actualice los elementos HTML con los valores correspondientes
 };
 
