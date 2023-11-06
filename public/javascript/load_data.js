@@ -53,3 +53,37 @@ let cargarFechaActual = () => {
   //Actualice la referencia al elemento h6 con el valor de la función fechaActual()
   tituloH6.textContent = fechaActual();
 };
+
+let parseXML = (responseText) => {
+  // Parsing XML
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(responseText, "application/xml");
+
+  console.log(xml);
+};
+
+// Callback async
+let selectListener = async (event) => {
+  let selectedCity = event.target.value;
+
+  try {
+    //API key
+    let APIkey = "6e2b8b1cf0e876c2a8cb596350b0daff";
+    let url = `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&mode=xml&appid=${APIkey}`;
+
+    let response = await fetch(url);
+    let responseText = await response.text();
+
+    await parseXML(responseText);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+let loadForecastByCity = () => {
+  //Handling event
+  let selectElement = document.querySelector("select");
+  selectElement.addEventListener("change", selectListener);
+};
+
+loadForecastByCity();
