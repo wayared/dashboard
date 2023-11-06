@@ -55,11 +55,40 @@ let cargarFechaActual = () => {
 };
 
 let parseXML = (responseText) => {
-  // Parsing XML
   const parser = new DOMParser();
   const xml = parser.parseFromString(responseText, "application/xml");
 
-  console.log(xml);
+  // Referencia al elemento `#forecastbody` del documento HTML
+
+  let forecastElement = document.querySelector("#forecastbody");
+  forecastElement.innerHTML = "";
+
+  // Procesamiento de los elementos con etiqueta `<time>` del objeto xml
+  let timeArr = xml.querySelectorAll("time");
+
+  timeArr.forEach((time) => {
+    let from = time.getAttribute("from").replace("T", " ");
+
+    let humidity = time.querySelector("humidity").getAttribute("value");
+    let windSpeed = "";
+    let precipitation = "";
+    let pressure = "";
+    let cloud = "";
+
+    let template = `
+          <tr>
+              <td>${from}</td>
+              <td>${humidity}</td>
+              <td>${windSpeed}</td>
+              <td>${precipitation}</td>
+              <td>${pressure}</td>
+              <td>${cloud}</td>
+          </tr>
+      `;
+
+    //Renderizando la plantilla en el elemento HTML
+    forecastElement.innerHTML += template;
+  });
 };
 
 // Callback async
