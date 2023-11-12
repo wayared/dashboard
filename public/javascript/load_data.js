@@ -161,7 +161,6 @@ let cargarOpenMeteo = () => {
 
 }
 
-
 cargarPrecipitacion()
 cargarFechaActual()
 cargarOpenMeteo()
