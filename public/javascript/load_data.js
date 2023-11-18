@@ -131,10 +131,20 @@ let cargarOpenMeteo = () => {
       let plotRef = document.getElementById("plot1");
 
       //Etiquetas del gráfico
-      let labels = responseJSON.hourly.time;
+       // Convertir etiquetas de tiempo a un formato más amigable (fecha, hora, minutos, AM/PM)
+      let labels = tiempoArr.map((timestamp) => {
+        let date = new Date(timestamp);
+        return `${date.toLocaleDateString()} ${date.toLocaleTimeString(undefined, {
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true
+        })}`;
+      });
 
       //Etiquetas de los datos
       let data = responseJSON.hourly.temperature_2m;
+
+        
 
       //Objeto de configuración del gráfico
       let config = {
@@ -162,7 +172,38 @@ cargarFechaActual();
 cargarOpenMeteo();
 
 let loadExternalTable = () => {
-  //Requerimiento asíncrono
+  // Requerimiento asíncrono
+  
+  let proxyURL = 'https://cors-anywhere.herokuapp.com/'
+  let endpoint = proxyURL + 'https://www.gestionderiesgos.gob.ec/monitoreo-de-inundaciones/'
+
+  // Realizar la solicitud utilizando fetch
+  fetch(endpoint)
+    .then(response => {
+      // Verificar si la respuesta es exitosa (código 200)
+      if (response.ok) {
+        return response.text(); // Convertir la respuesta a texto
+      }
+      throw new Error('Network response was not ok.');
+    })
+    .then(text => {
+      // Convertir el texto HTML a un objeto XML utilizando DOMParser
+      let parser = new DOMParser();
+      let xmlDoc = parser.parseFromString(text, 'text/html');
+
+      // Extraer el elemento deseado usando querySelector
+      let tableElement = xmlDoc.querySelector('#postcontent table');
+
+      // Obtener el elemento del DOM actual
+      let elementoDOM = document.getElementById('monitoreo');
+
+      // Asignar el contenido del elemento XML al contenido del DOM
+      elementoDOM.innerHTML = tableElement.outerHTML;
+    })
+    .catch(error => {
+      // Manejar cualquier error de la solicitud
+      console.error('Hubo un problema con la solicitud fetch:', error);
+    });
 };
 
 loadExternalTable();
